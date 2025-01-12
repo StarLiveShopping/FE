@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+issue_key=$(echo $branch_name | grep -oE '[A-Z]+-[0-9]+' | head -n 1)
+
+msg_file="$1"
+
+msg=$(cat "$msg_file")
+
+if [[ ! "$msg" =~ \[$issue_key\] ]]; then
+  echo "[$issue_key] $msg" > "$msg_file"
+fi
