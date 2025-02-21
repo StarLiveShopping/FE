@@ -58,7 +58,7 @@ const PopularProducts = () => {
   return (
     <div className="container mx-auto max-w-screen-lg py-16">
       <SectionTitle text={`인기 상품 모음`} />
-      <div className="grid grid-cols-1 gap-6 justify-center items-center sm:h-[36rem] sm:items-start sm:grid-cols-2 pt-8 pb-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 justify-center items-center sm:min-h-[54rem] lg:min-h-[36rem] sm:items-start sm:grid-cols-2 pt-8 pb-4 lg:grid-cols-3">
         {displayedProducts.map((product) => (
           <div
             key={product.id}
