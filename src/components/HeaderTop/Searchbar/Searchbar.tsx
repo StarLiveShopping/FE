@@ -53,7 +53,7 @@ export default function Searchbar() {
           onSuggestionSelect={(selectedSuggestion) => {
             setSearchQuery(selectedSuggestion);
           }}
-          className="absolute box-border w-[calc(100%+4px)] px-5 py-5 top-full left-[-2px] lg:left-[-1.5px] h-96  border-solid border-gray-300 border-x-2 border-b-2 rounded-b-md bg-white "
+          className="absolute box-border w-[calc(100%+4px)] px-5 py-5 top-full left-[-2px]  h-96  border-solid border-gray-300 border-x-2 border-b-2 rounded-b-md bg-white "
         />
       )}
     </div>

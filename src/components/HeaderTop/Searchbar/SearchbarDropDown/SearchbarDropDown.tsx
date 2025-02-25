@@ -26,12 +26,7 @@ export default function SearchbarDropdown({
   className,
 }: SearchbarDropdownProps) {
   return (
-    <div
-      className={clsx(
-        'px-5 absolute box-border w-full top-full left-0 h-96 border-solid border-gray-300 border-x-2 border-b-2 rounded-b-md bg-white',
-        className
-      )}
-    >
+    <div className={clsx(className)}>
       <span className="font-bold text-[17px]">최근 검색어</span>
       <ul className="mt-5 flex flex-col h-[80%]">
         {suggestions.slice(0, 10).map((suggestion, idx) => {
