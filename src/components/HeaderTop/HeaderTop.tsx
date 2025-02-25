@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { RecentListSheet } from './RecentListSheet';
 import { IconBox } from './IconBox';
 import { Dropdown } from './Dropdown';
+import { Searchbar } from './Searchbar';
 
-export default function Header() {
+export default function HeaderTop() {
   const [isSheetOpened, setIsSheetOpened] = useState<boolean>(false);
   const [isDropdownOpened, setIsDropdownOpened] = useState<boolean>(false);
 
@@ -17,7 +18,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 flex w-screen justify-center border-b-2">
+    <div className="fixed top-0 left-0 flex w-screen justify-center border-b-2 z-10">
       {isSheetOpened && (
         <RecentListSheet
           isSheetOpened={isSheetOpened}
@@ -26,33 +27,26 @@ export default function Header() {
       )}
 
       {/* 세로 */}
-      <div className="w-full flex-col items-center lg:w-[1080px]">
+      <div
+        className={`w-full flex-col items-center lg:w-[1080px] h-[144px] md:h-[96px]`}
+      >
         {/* 480px 이하, 로고 */}
-        <div className="flex w-full justify-center bg-red-100 md:hidden">
-          <img src="/images/Logo.png" alt="Logo" className="w-24" />
+        <div className="flex w-full h-1/3 justify-center bg-red-100 md:hidden">
+          <img src="/images/Logo.png" alt="Logo" />
         </div>
         {/* 헤더 */}
-        <div className="flex w-full justify-between items-center px-8 header__wrapper h-24">
+        <div className="flex w-full justify-between items-center px-0 header__wrapper h-2/3 md:h-full md:px-8">
           <div className="hidden w-24 h-auto md:block">
             <img src="/images/Logo.png" alt="Logo" />
           </div>
 
           <form
             className="flex justify-center items-center h-12 
-        xs: w-[calc(100%-100px)]
-        md:w-[calc(100%-6rem-250px)]"
+        w-[calc(100%-100px)]
+        md:w-[calc(100%-6rem-300px)]
+        ml-4"
           >
-            <input
-              type="text"
-              placeholder="검색어를 입력하세요."
-              className="h-full border-solid border-gray-300 border-y-2 border-l-2 rounded-l-md w-11/12 px-2 text-xs xs:text-sm focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="border-solid border-gray-300 border-y-2 border-r-2 rounded-r-md h-full flex items-center pr-2"
-            >
-              <img src="/icons/glass.svg" alt="glass" className="w-6" />
-            </button>
+            <Searchbar />
           </form>
 
           <div className="hidden md:block ">
@@ -99,6 +93,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

@@ -1,5 +1,11 @@
-import { Header } from '@/components/Header';
+import { HeaderMenu } from '@/components/HeaderMenu';
+import { HeaderTop } from '@/components/HeaderTop';
 
 export default function HeaderContainer() {
-  return <Header />;
+  return (
+    <header className="relative">
+      <HeaderTop />
+      <HeaderMenu />
+    </header>
+  );
 }

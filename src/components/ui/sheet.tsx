@@ -3,7 +3,6 @@
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
@@ -64,10 +63,6 @@ const SheetContent = React.forwardRef<
       className={cn(sheetVariants({ side }), className)}
       {...props}
     >
-      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-zinc-100 dark:ring-offset-zinc-950 dark:focus:ring-zinc-300 dark:data-[state=open]:bg-zinc-800">
-        <X className="h-6 w-6" />
-        <span className="sr-only">Close</span>
-      </SheetPrimitive.Close>
       {children}
     </SheetPrimitive.Content>
   </SheetPortal>
@@ -78,13 +73,22 @@ const SheetHeader = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      'flex flex-col space-y-2 text-center sm:text-left',
-      className
-    )}
-    {...props}
-  />
+  <div className="flex w-full justify-between border-b-2 pl-4">
+    <div
+      className={cn('flex text-center sm:text-left items-center ', className)}
+      {...props}
+    />
+    <SheetPrimitive.Close
+      className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none hover:bg-slate-300
+    disabled:pointer-events-none data-[state=open]:bg-zinc-100 dark:ring-offset-zinc-950 dark:focus:ring-zinc-300 dark:data-[state=open]:bg-zinc-800"
+    >
+      {/* <X className="h-16 w-16 bg-red-400 text-white font-bold" /> */}
+      <div className="flex items-center justify-center h-16 w-16 bg-[#FF5340]">
+        <img className=" h-12 w-12" src="/icons/closeButton.svg" />
+      </div>
+      <span className="sr-only">Close</span>
+    </SheetPrimitive.Close>
+  </div>
 );
 SheetHeader.displayName = 'SheetHeader';
 
@@ -117,6 +121,15 @@ const SheetTitle = React.forwardRef<
 ));
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
+const SheetBody = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>((props, ref) => {
+  return <div ref={ref} className="p-4" {...props} />;
+});
+
+SheetBody.displayName = 'SheetBody';
+
 const SheetDescription = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
@@ -139,5 +152,6 @@ export {
   SheetHeader,
   SheetFooter,
   SheetTitle,
+  SheetBody,
   SheetDescription,
 };
