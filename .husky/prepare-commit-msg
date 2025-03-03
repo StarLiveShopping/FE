@@ -1,0 +1,22 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+branch_issue_key=$(echo "$branch_name" | grep -oE '[A-Z]+-[0-9]+' | head -n 1)
+
+if [[ -z "$branch_issue_key" ]]; then
+  branch_issue_key="UNKNOWN"
+fi
+
+msg_file="$1"
+
+msg=$(cat "$msg_file")
+
+commit_issue_key=$(echo "$msg" | grep -oE '[A-Z]+-[0-9]+' | head -n 1)
+
+if [[ -z "$commit_issue_key" ]]; then
+  echo "[$branch_issue_key] $msg" > "$msg_file"
+else
+  echo "$msg" > "$msg_file"
+fi
