@@ -1,18 +1,30 @@
-import type { Config } from 'tailwindcss';
+/* eslint-disable @typescript-eslint/no-require-imports */
 
+import type { Config } from 'tailwindcss';
 export default {
+  darkMode: ['class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/container/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
+      screens: {
+        xs: '480px',
+        lg: '1080px',
+      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 } satisfies Config;
